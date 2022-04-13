@@ -1,0 +1,9 @@
+query GetZone ($coordinateVar:Point!){
+    getZone(coordinate: $coordinateVar) {
+        message
+        statusCode
+        result {
+            name
+        }
+    }
+}
