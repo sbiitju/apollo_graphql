@@ -10,7 +10,6 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
-@ExperimentalCoroutinesApi
 @HiltViewModel
 class CharacterViewmodel @Inject constructor(
     private val baseRepo: BaseRepo
