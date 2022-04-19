@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.shahinbasahr.apollo.network.BaseRepo
+import com.shahinbasahr.apollo.network.GeoPoint
+import com.shahinbashar.apollo.GetZoneQuery
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -16,14 +18,14 @@ class CharacterViewmodel @Inject constructor(
 ) : ViewModel() {
     @SuppressLint("CheckResult")
     fun getData() {
+
         baseRepo.getZone(23.8103, 90.4125)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(({
-                Log.d("Check", it.getZone?.result.toString())
+                Log.d("Check1", it.getZone?.result.toString())
             }), ({
-                Log.d("Check", it.cause.toString())
-
+                Log.d("Check2", it.cause.toString())
             }))
     }
 

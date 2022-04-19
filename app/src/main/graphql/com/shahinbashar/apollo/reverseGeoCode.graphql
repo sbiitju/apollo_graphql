@@ -1,0 +1,20 @@
+query reverseGeoCode($point: Point!) {
+    reverseGeoCode(coordinate: $point){
+        message
+        statusCode
+        result {
+            address
+            addressComponents{
+                house
+                road
+            }
+            area
+            areaComponents{
+                area
+                subArea
+            }
+            city
+            district
+        }
+    }
+}
