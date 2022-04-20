@@ -1,9 +1,7 @@
 package com.shahinbasahr.apollo.di
 
-import com.aisavent.data.location.LocationDataSource
-import com.aisavent.data.location.LocationGraphQLApi
-import com.aisavent.data.location.LocationNetworkSource
-import com.aisavent.data.location.LocationRepository
+import com.shahinbasahr.apollo.location.LocationDataSource
+import com.shahinbasahr.apollo.location.LocationRepository
 import com.shahinbasahr.apollo.network.BaseRepo
 import com.shahinbasahr.apollo.network.BaseRepoIMP
 import dagger.Binds
@@ -23,7 +21,7 @@ abstract class ViewModelModule {
 
     @Binds
     @ViewModelScoped
-    abstract fun bindLocationRepository(locationRepository: LocationRepository):LocationDataSource
+    abstract fun bindLocationRepository(locationRepository: LocationRepository): LocationDataSource
 
 //    @Binds
 //    @ViewModelScoped

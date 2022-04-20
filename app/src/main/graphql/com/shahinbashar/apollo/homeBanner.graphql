@@ -1,0 +1,87 @@
+query HomeBanners($coordinate: Point!){
+    getClientHomeBanners(
+        coordinate: $coordinate, #[90.4031033, 23.7984463],
+        pagination: { limit: 25, skip: 0 }
+    ) {
+        message
+        statusCode
+        result {
+            count
+            homeBanners {
+                id,
+                homeBannerType,
+                meta {
+                    images {
+                        app
+                        appForDetails
+                    }
+                }
+                campaignPageDetails {
+                    title,
+                    description,
+                    moreInfo,
+                    hashTags,
+                    category {
+                        name,
+                        order,
+                    }
+                }
+                staticPageDetails {
+                    title,
+                    description,
+                    moreInfo,
+                    category {
+                        name,
+                        order,
+                    }
+                }
+                outletRedirectionPageDetails {
+                    link
+                }
+            }
+        }
+    }
+}
+query HomeBannerByPageLink($coordinate: Point!, $pageLink: String!){
+    getHomeBannerByPageLink(
+        coordinate: $coordinate,
+        pageLink: $pageLink
+    ) {
+        message
+        statusCode
+        result {
+            id,
+            homeBannerType,
+            isExistsInCoverageArea,
+            hasCampaignEnded,
+            meta {
+                images {
+                    app,
+                    appForDetails
+                }
+            }
+            campaignPageDetails {
+                title,
+                description,
+                moreInfo,
+                hashTags,
+                category {
+                    name,
+                    order,
+                }
+            }
+            staticPageDetails {
+                title,
+                description,
+                moreInfo,
+                category {
+                    name,
+                    order,
+                }
+            }
+            outletRedirectionPageDetails {
+                link
+            }
+        }
+    }
+}

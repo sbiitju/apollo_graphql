@@ -8,10 +8,10 @@ import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -19,28 +19,27 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.tasks.Task
 import com.shahinbasahr.apollo.R
 import com.shahinbasahr.apollo.databinding.ActivityMapsBinding
-import com.shahinbashar.apollo.ReverseGeoCodeQuery
+import com.shahinbasahr.apollo.nav_activity.NavActivity
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.disposables.Disposable
-import javax.inject.Inject
+
 @AndroidEntryPoint
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+
+    var test: String?=""
 
     companion object {
         const val REQUEST_CHECK_GPS_SETTINGS = 1
     }
 
-    private var sydney=ObservableField<LatLng>()
+    private var sydney = ObservableField<LatLng>()
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
     private lateinit var viewModel: MapsViewModel
     private var requestingLocationUpdates = false
-
-
 
 
     private val fusedLocationClient: FusedLocationProviderClient by lazy {
@@ -60,17 +59,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var queryTextWatcherDisposable: Disposable
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
+
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        sydney.set(LatLng(0.0,0.0))
-        viewModel=ViewModelProvider(this)[MapsViewModel::class.java]
+        sydney.set(LatLng(0.0, 0.0))
+        viewModel = ViewModelProvider(this)[MapsViewModel::class.java]
         binding.viewmodel = viewModel
         createLocationRequest()
         getCurrentLocation()
-        binding.btnMyLocation.setOnClickListener{
+        binding.btnMyLocation.setOnClickListener {
             createLocationRequest()
             getCurrentLocation()
         }
@@ -78,7 +78,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             override fun onLocationResult(p0: LocationResult) {
                 p0.let { result ->
                     Log.d("Result", result.locations.toString())
-                    sydney.set(LatLng(result.lastLocation.latitude,result.lastLocation.longitude))
+                    sydney.set(LatLng(result.lastLocation.latitude, result.lastLocation.longitude))
                     /*for (location in result.locations) {
                                     showToast("Location Changed - Lat: " + location.latitude + ", Lng: " + location.longitude)
                                 }*/
@@ -92,6 +92,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        binding.tvAreaActivityMap.setOnClickListener {
+            if (viewModel.userLocation.value != null) {
+                Intent(this, NavActivity::class.java).apply {
+                    putExtra(NavActivity.ARGUMENT_USER_LOCATION, viewModel.userLocation.value)
+                    startActivity(this)
+                }
+            }
+        }
+
+        initObserver()
+
+    }
+
+    private fun initObserver() {
+        viewModel.userLocation.observe(this) {
+            binding.tvLocationActivityMap.text = it.address
+            Toast.makeText(this,it.address,Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -111,8 +129,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         mMap.setOnCameraIdleListener {
             viewModel.getLocationAddress(mMap.cameraPosition.target)
+            viewModel.getHomeBanner(mMap.cameraPosition.target)
+            sydney.set(mMap.cameraPosition.target)
         }
-
     }
 
 
@@ -165,7 +184,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             if (task.isSuccessful) {
                 task.result?.let { location ->
                     Log.d("location", location.toString())
-                    sydney.set(LatLng(location.latitude,location.longitude))
+                    sydney.set(LatLng(location.latitude, location.longitude))
                     mMap.animateCamera(
                         CameraUpdateFactory.newLatLngZoom(
                             sydney.get()!!,

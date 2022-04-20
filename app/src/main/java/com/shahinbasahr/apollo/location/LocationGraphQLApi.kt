@@ -1,14 +1,14 @@
-package com.aisavent.data.location
+package com.shahinbasahr.apollo.location
 
 
 import android.content.Context
-import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Error
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.rx2.Rx2Apollo
 import com.shahinbasahr.apollo.network.GeoPoint
 import com.shahinbasahr.apollo.network.ProvideApolloClient
 import com.shahinbasahr.apollo.network.RequestExceptionGraphQl
+import com.shahinbashar.apollo.HomeBannersQuery
 import com.shahinbashar.apollo.ReverseGeoCodeQuery
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.Observable
@@ -40,7 +40,13 @@ class LocationGraphQLApi @Inject constructor(
                 }
             }
     }
+    override fun getHomeBanners(lat: Double, lng: Double): Observable<HomeBannersQuery.Data> {
+        val homeBannersQuery = HomeBannersQuery(GeoPoint(lat, lng))
 
+        return Rx2Apollo.from(ProvideApolloClient.getApolloClient(context).query(homeBannersQuery))
+            .onResponse()
+            .map { data: HomeBannersQuery.Data -> return@map data }
+    }
 
 }
 fun <T> Observable<Response<T>>.onResponse(): Observable<T> {
