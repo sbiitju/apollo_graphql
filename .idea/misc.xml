@@ -5,10 +5,12 @@
       <map>
         <entry key="..\:/Users/BS328/AndroidStudioProjects/Apollo/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.158" />
         <entry key="..\:/Users/BS328/AndroidStudioProjects/Apollo/app/src/main/res/drawable/ic_map_marker.xml" value="0.1" />
+        <entry key="..\:/Users/BS328/AndroidStudioProjects/Apollo/app/src/main/res/layout/activity_get_item.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/BS328/AndroidStudioProjects/Apollo/app/src/main/res/layout/activity_main.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/BS328/AndroidStudioProjects/Apollo/app/src/main/res/layout/activity_maps.xml" value="0.12" />
         <entry key="..\:/Users/BS328/AndroidStudioProjects/Apollo/app/src/main/res/layout/activity_nav.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/BS328/AndroidStudioProjects/Apollo/app/src/main/res/layout/fragment_show_restaurant_list.xml" value="0.1585144927536232" />
+        <entry key="..\:/Users/BS328/AndroidStudioProjects/Apollo/app/src/main/res/layout/list_item.xml" value="0.1585144927536232" />
       </map>
     </option>
   </component>

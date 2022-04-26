@@ -22,6 +22,9 @@
         android:theme="@style/Theme.Apollo"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".maps.MapsActivity"
+            android:exported="false" />
+        <activity
             android:name=".nav_activity.NavActivity"
             android:exported="false" />
         <!--
@@ -44,7 +47,7 @@
             android:exported="true"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".maps.MapsActivity"
+            android:name=".getitem.GetItemActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

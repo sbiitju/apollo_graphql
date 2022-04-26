@@ -1,0 +1,189 @@
+query MenuCategory($outletId: ObjectId!) {
+    getItems(
+        pagination: {},
+        filter: {
+            menuCategoryId: null
+        },
+        outletId: $outletId
+    ) {
+        message
+        statusCode
+        result {
+            menuCategories{
+                id
+                name
+            }
+        }
+    }
+}
+
+query MenuItems($skip: Int!, $limit: Int!, $outletId: ObjectId!) {
+    getItems(
+        pagination: {
+            skip: $skip,
+            limit: $limit
+        },
+        outletId: $outletId
+    ) {
+        message
+        statusCode
+        result {
+            count
+            items {
+                isFavorite
+                ingredients{
+                    id
+                    name
+                }
+                id
+                basePrice
+                meta {
+                    name
+                    description
+                    isVeg
+                    isSpicy
+                    spicyLevel
+                    images {
+                        cover
+                        thumbnail
+                    }
+                }
+                variants {
+                    id
+                    name
+                    price
+                    additionalPrice
+                    preparationTime
+                    proportion
+                    isToppingAvailable
+                    discountedPrice
+                }
+                totalFavorite
+                restaurant {
+                    id
+                    name
+                }
+                outlet {
+                    id
+                    name
+                }
+                discountedPrice
+                realPrice
+                customRealPrice
+
+            }
+
+        }
+    }
+}
+
+query MenuItem($itemId: ObjectId!) {
+    getItem(itemId: $itemId) {
+        message
+        statusCode
+        result {
+            outlet{
+                id
+                name
+            }
+            basePrice
+            variants {
+                id
+                name
+                price
+                additionalPrice
+                preparationTime
+                proportion
+                isToppingAvailable
+                discountedPrice
+            }
+            meta {
+                name
+                description
+                images {
+                    cover
+                    thumbnail
+                }
+                isSpicy
+                spicyLevel
+                isVeg
+                calorie
+                isOrganic
+            }
+            allergicIndications {
+                id
+                name
+                value
+            }
+            nutritions {
+                id
+                name
+                value
+            }
+            ingredients {
+                id
+                name
+            }
+            dealTitles
+            totalFavorite
+            totalTimesOrdered
+            isFavorite
+            restaurant {
+                id
+                name
+            }
+            outlet {
+                id
+                name
+                coverImage
+            }
+            discountedPrice
+            realPrice
+            customRealPrice
+        }
+    }
+}
+
+query ItemVariant($itemId: ObjectId!) {
+    getItem(itemId: $itemId) {
+        message
+        statusCode
+        result {
+            basePrice
+            variants{
+                id
+                name
+                price
+                additionalPrice
+                preparationTime
+                isToppingAvailable
+                discountedPrice
+            }
+        }
+
+    }
+}
+
+query ToppingGroup($variantId: ObjectId!) {
+    getToppingGroups(variantId: $variantId) {
+        message
+        statusCode
+        result {
+            id
+            variantId
+            meta {
+                name
+                maximum
+                minimum
+                isRequired
+                isMultiSelect
+            }
+            toppings {
+                id
+                name
+                additionalPrice
+                maximum
+            }
+        }
+    }
+}

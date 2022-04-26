@@ -3,6 +3,10 @@ package com.shahinbasahr.apollo.di
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import com.shahinbasahr.apollo.getitem.network.GetItemGraphQL
+import com.shahinbasahr.apollo.getitem.network.GetItemIMP
+import com.shahinbasahr.apollo.getitem.network.GetItemRepo
+import com.shahinbasahr.apollo.getitem.network.GetItemRepoNetwork
 import com.shahinbasahr.apollo.location.LocationGraphQLApi
 import com.shahinbasahr.apollo.location.LocationNetworkSource
 import com.shahinbasahr.apollo.preference.CacheData
@@ -20,6 +24,12 @@ import javax.inject.Singleton
 abstract class DemoModule {
     @Binds
     abstract fun bindLocationRepository2(locationGraphQLApi: LocationGraphQLApi): LocationNetworkSource
+
+    @Binds
+    abstract fun bindGetItemRep(getItemIMP: GetItemIMP): GetItemRepo
+
+    @Binds
+    abstract fun bindGetItemNet(getItemGraphQL: GetItemGraphQL): GetItemRepoNetwork
 
     @Binds
     abstract fun bindPreference(cacheDataIMP: CacheDataIMP): CacheData

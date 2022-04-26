@@ -17,10 +17,8 @@ import javax.inject.Singleton
 
 @Singleton
 class LocationGraphQLApi @Inject constructor(
-    @ApplicationContext private val context:Context
+    @ApplicationContext private val context: Context
 ) : LocationNetworkSource {
-
-
     override fun reverseGeoCode(
         latitude: Double,
         longitude: Double
@@ -40,6 +38,7 @@ class LocationGraphQLApi @Inject constructor(
                 }
             }
     }
+
     override fun getHomeBanners(lat: Double, lng: Double): Observable<HomeBannersQuery.Data> {
         val homeBannersQuery = HomeBannersQuery(GeoPoint(lat, lng))
 
@@ -49,6 +48,7 @@ class LocationGraphQLApi @Inject constructor(
     }
 
 }
+
 fun <T> Observable<Response<T>>.onResponse(): Observable<T> {
     return this.map { response ->
         if (!response.hasErrors()) {
@@ -58,4 +58,5 @@ fun <T> Observable<Response<T>>.onResponse(): Observable<T> {
         }
     }
 }
+
 class ApiExceptionGraphQl(val errorList: List<Error>?) : Exception()
