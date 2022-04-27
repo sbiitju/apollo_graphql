@@ -1,7 +1,10 @@
 package com.shahinbasahr.apollo.getitem.model
 
+import android.os.Parcelable
 import com.shahinbashar.apollo.MenuItemsQuery
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class ItemMeta(
     val name: String? = null,
     val description: String? = null,
@@ -10,7 +13,7 @@ data class ItemMeta(
     val isVeg: Boolean = false,
     val isOrganic: Boolean = false,
     val calorie: Double = 0.0
-) {
+):Parcelable {
     companion object {
         fun fromGQLItemList(meta: MenuItemsQuery.Meta?): ItemMeta {
             return ItemMeta(

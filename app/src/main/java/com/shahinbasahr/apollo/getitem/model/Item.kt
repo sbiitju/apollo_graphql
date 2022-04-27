@@ -1,7 +1,10 @@
 package com.shahinbasahr.apollo.getitem.model
 
+import android.os.Parcelable
 import com.shahinbashar.apollo.MenuItemsQuery
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Item(
     val id: String,
     val basePrice: Double = 0.0,
@@ -14,7 +17,7 @@ data class Item(
     var isFavorite: Boolean = false,
     var discountedPrice: Double? = null,
     var realPrice: Double? = null
-) {
+):Parcelable {
     var quantity: Int = 0
     var spicyIcon: String? = null
 

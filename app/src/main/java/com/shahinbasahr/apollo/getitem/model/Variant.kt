@@ -1,7 +1,10 @@
 package com.shahinbasahr.apollo.getitem.model
 
+import android.os.Parcelable
 import com.shahinbashar.apollo.MenuItemsQuery
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Variant(
     val id: String,
     val name: String? = null,
@@ -11,7 +14,7 @@ data class Variant(
     val isToppingAvailable: Boolean = false,
     val proportion: String? = null,
     var discountedPrice: Double? = null
-) {
+):Parcelable {
     companion object {
         fun fromGQLItemList(variant: MenuItemsQuery.Variant?): Variant {
             return Variant(

@@ -22,6 +22,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.tasks.Task
 import com.shahinbasahr.apollo.R
 import com.shahinbasahr.apollo.databinding.ActivityMapsBinding
+import com.shahinbasahr.apollo.getitem.GetItemActivity
 import com.shahinbasahr.apollo.nav_activity.NavActivity
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.disposables.Disposable
@@ -94,7 +95,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         binding.tvAreaActivityMap.setOnClickListener {
             if (viewModel.userLocation.value != null) {
-                Intent(this, NavActivity::class.java).apply {
+                Intent(this, GetItemActivity::class.java).apply {
                     putExtra(NavActivity.ARGUMENT_USER_LOCATION, viewModel.userLocation.value)
                     startActivity(this)
                 }

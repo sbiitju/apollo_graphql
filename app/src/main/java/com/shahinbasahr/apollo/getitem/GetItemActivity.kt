@@ -2,6 +2,7 @@ package com.shahinbasahr.apollo.getitem
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +16,6 @@ class GetItemActivity : AppCompatActivity() {
     private lateinit var viewmodel: GetItemVIewModel
     private lateinit var getItemAdapter: GetItemAdapter
 
-    @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGetItemBinding.inflate(layoutInflater)
@@ -24,12 +24,10 @@ class GetItemActivity : AppCompatActivity() {
         viewmodel = ViewModelProvider(this)[GetItemVIewModel::class.java]
         binding.viewmodel = viewmodel
         binding.lifecycleOwner = this
-        setupView()
         setupList()
-
+        setupView()
     }
 
-    @SuppressLint("CheckResult")
     private fun setupList() {
         binding.itemViews.apply {
             layoutManager = LinearLayoutManager(context)
@@ -42,6 +40,7 @@ class GetItemActivity : AppCompatActivity() {
     @SuppressLint("CheckResult")
     private fun setupView() {
         viewmodel.listData.subscribe {
+            Log.d("ListData", it.toString())
             getItemAdapter.submitData(lifecycle, it)
         }
     }
