@@ -8,5 +8,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ShowRestaurantListViewModel @Inject constructor() : ViewModel() {
-     val location = MutableLiveData<UserLocation>()
+//     val location = MutableLiveData<UserLocation>()
 }

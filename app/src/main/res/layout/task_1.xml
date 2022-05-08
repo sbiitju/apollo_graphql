@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA"
+    android:layout_margin="10dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/addNewAddressTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nova_round"
+        android:text="Add A New Address"
+        android:textColor="#C8000000"
+        android:textStyle="bold"
+        app:fontFamily="@font/nova_round"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/additionalInfoTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Additional Information"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addNewAddressTV"
+        android:textStyle="bold"
+        android:textSize="10sp"
+        android:textColor="#C8000000"
+        android:layout_marginTop="4dp"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/additionalInfoTV"
+        >
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,4 +13,13 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="TextStyleSemiBold" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/proxima_nova_semi_bold</item>
+        <item name="android:fontFamily">@font/proxima_nova_semi_bold</item>
+    </style>
+    <style name="TextStyleRegular" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/proxima_nova_regular</item>
+        <item name="android:fontFamily">@font/proxima_nova_regular</item>
+    </style>
 </resources>

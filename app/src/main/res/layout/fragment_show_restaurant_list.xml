@@ -1,25 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.shahinbasahr.apollo.view.fragment.showrestuarentlist.ShowRestaurantListViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.fragment.showrestuarentlist.ShowRestaurantList">
+        android:layout_margin="10dp"
+        android:background="#FAFAFA">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@{viewmodel.location.toString()}"
-            />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/addNewAddressTV"
+            style="@style/TextStyleSemiBold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Add A New Address"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/additionalInfoTV"
+            style="@style/TextStyleRegular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Additional Information"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addNewAddressTV" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/housNumberLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="House No"
+            app:boxStrokeColor="#b4bac0"
+            app:hintTextColor="?attr/colorOnSurface"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/additionalInfoTV">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etHouseNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOnSurface" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/apartmentLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Apartment No"
+            app:boxStrokeColor="#b4bac0"
+            app:hintTextColor="?attr/colorOnSurface"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/housNumberLayout">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etApartmentNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOnSurface" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/blockLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Block No"
+            app:boxStrokeColor="#b4bac0"
+            app:hintTextColor="?attr/colorOnSurface"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/apartmentLayout">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etBlockNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOnSurface" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkBoxReceive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="#f25f2c"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/blockLayout" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Want someone else to receive your order?"
+            android:textColor="#97000000"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/checkBoxReceive"
+            app:layout_constraintStart_toEndOf="@id/checkBoxReceive"
+            app:layout_constraintTop_toBottomOf="@id/blockLayout" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
